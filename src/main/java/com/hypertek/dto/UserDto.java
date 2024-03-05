@@ -13,9 +13,9 @@ public class UserDto {
     private String lastname;
     private String username;
     private String password;
-    private String enabled;
+    private boolean enabled;
     private String phone;
-    private RoleDto roleDto;
+    private RoleDto role;
     private Gender gender;
 
 }

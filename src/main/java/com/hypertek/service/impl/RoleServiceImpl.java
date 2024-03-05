@@ -2,8 +2,10 @@ package com.hypertek.service.impl;
 
 import com.hypertek.dto.RoleDto;
 import com.hypertek.service.RoleService;
-import java.util.List;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+@Service
 public class RoleServiceImpl extends AbstractMapService<Long,RoleDto> implements RoleService{
 
     @Override

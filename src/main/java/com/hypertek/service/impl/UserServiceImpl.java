@@ -2,9 +2,10 @@ package com.hypertek.service.impl;
 
 import com.hypertek.dto.UserDto;
 import com.hypertek.service.UserService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class UserServiceImpl extends AbstractMapService<String,UserDto> implements UserService{
 
 

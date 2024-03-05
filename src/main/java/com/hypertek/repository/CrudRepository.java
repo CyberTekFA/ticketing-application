@@ -1,7 +1,9 @@
 package com.hypertek.repository;
 
-import java.util.List;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+@Repository
 public interface CrudRepository <T,ID>{
 
     T save(T t);
