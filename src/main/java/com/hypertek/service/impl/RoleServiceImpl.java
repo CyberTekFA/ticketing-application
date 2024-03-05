@@ -2,44 +2,27 @@ package com.hypertek.service.impl;
 
 import com.hypertek.dto.RoleDto;
 import com.hypertek.service.RoleService;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
-@Service
-public class RoleServiceImpl implements RoleService {
-    private final RoleService roleService;
 
-    public RoleServiceImpl(RoleService roleService) {
-        this.roleService = roleService;
-    }
+public class RoleServiceImpl extends AbstractMapService<Long,RoleDto> implements RoleService{
 
     @Override
     public RoleDto save(RoleDto roleDto) {
-        return roleService.save(roleDto);
+        return super.save(roleDto.getId(),roleDto);
     }
 
     @Override
-    public RoleDto findById(Long Id) {
-        return roleService.findById(Id);
-    }
-
-    @Override
-    public RoleDto updateById(Long aLong) {
-        return roleService.updateById(aLong);
+    public RoleDto findById(Long id) {
+        return super.findById(id);
     }
 
     @Override
     public List<RoleDto> findAll() {
-        return roleService.findAll();
-    }
-
-    @Override
-    public void delete(RoleDto roleDto) {
-        roleService.delete(roleDto);
+        return super.findAll();
     }
 
     @Override
     public void deleteById(Long id) {
-        roleService.deleteById(id);
+        super.deleteById(id);
     }
 }
