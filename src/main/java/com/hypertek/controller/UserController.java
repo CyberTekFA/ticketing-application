@@ -5,9 +5,7 @@ import com.hypertek.service.RoleService;
 import com.hypertek.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,4 +29,14 @@ public class UserController {
         return "/user/create";
     }
 
+    @PostMapping("/create")
+    public String saveUser(@ModelAttribute("user") UserDto userDto, Model model){
+        userService.save(userDto);
+        return "redirect:/user/create";
+    }
+    @DeleteMapping("/create")
+    public String deleteUser(@ModelAttribute("user")UserDto userDto ){
+        userService.deleteById(userDto.getUsername());
+        return "redirect:/user/create";
+    }
 }
