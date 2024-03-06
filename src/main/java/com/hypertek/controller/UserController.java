@@ -1,5 +1,4 @@
 package com.hypertek.controller;
-import com.hypertek.dto.RoleDto;
 import com.hypertek.dto.UserDto;
 import com.hypertek.service.RoleService;
 import com.hypertek.service.UserService;
@@ -30,13 +29,9 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public String saveUser(@ModelAttribute("user") UserDto userDto, Model model){
+    public String saveUser(@ModelAttribute("user") UserDto userDto){
         userService.save(userDto);
         return "redirect:/user/create";
     }
-    @DeleteMapping("/create")
-    public String deleteUser(@ModelAttribute("user")UserDto userDto ){
-        userService.deleteById(userDto.getUsername());
-        return "redirect:/user/create";
-    }
+
 }
