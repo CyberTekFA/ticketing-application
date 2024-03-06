@@ -1,5 +1,6 @@
 package com.hypertek.service.impl;
 
+import com.hypertek.dto.RoleDto;
 import com.hypertek.dto.UserDto;
 import com.hypertek.service.UserService;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,10 @@ public class UserServiceImpl extends AbstractMapService<String,UserDto> implemen
     @Override
     public void deleteById(String id) {
         super.deleteById(id);
+    }
+    @Override
+    public void update(UserDto object) {
+        super.update(object.getUsername(),object);
     }
 
 }
