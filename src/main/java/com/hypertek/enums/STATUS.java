@@ -3,11 +3,10 @@ package com.hypertek.enums;
 import lombok.Getter;
 
 @Getter
-public enum Gender {
-    MALE("male"), FEMALE("female");
+public enum STATUS {
+    COMPLETE("Complete"), IN_PROGRESS("In_progress");
     private final String value;
-    Gender(String value){
+    STATUS(String value){
         this.value = value;
     }
-
 }
