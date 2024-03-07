@@ -2,6 +2,7 @@ package com.hypertek.service.impl;
 
 import com.hypertek.dto.ProjectDTO;
 
+import com.hypertek.enums.STATUS;
 import com.hypertek.service.ProjectService;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,12 @@ public class ProjectServiceImpl extends AbstractMapService<String, ProjectDTO> i
 
     @Override
     public ProjectDTO save(ProjectDTO projectDTO) {
+        if (projectDTO.getStatus() == null){
+            projectDTO.setStatus(STATUS.OPEN);
+        }
+        if (projectDTO.getAssignedManager().getRole() == null){
+            projectDTO.setAssignedManager(projectDTO.getAssignedManager());
+        }
         return super.save(projectDTO.getProjectCode(),projectDTO);
     }
 

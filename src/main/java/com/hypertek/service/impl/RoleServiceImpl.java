@@ -1,6 +1,7 @@
 package com.hypertek.service.impl;
 
 import com.hypertek.dto.RoleDto;
+import com.hypertek.dto.UserDto;
 import com.hypertek.service.RoleService;
 import org.springframework.stereotype.Service;
 
@@ -32,4 +33,6 @@ public class RoleServiceImpl extends AbstractMapService<Long,RoleDto> implements
     public void update(RoleDto object) {
         super.update(object.getId(),object);
     }
+
+
 }

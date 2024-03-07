@@ -1,5 +1,6 @@
 package com.hypertek.repository;
 
+import com.hypertek.dto.UserDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,4 +12,5 @@ public interface CrudRepository <T,ID>{
     List<T> findAll();
     void deleteById(ID id);
     void update(T object);
+
 }
