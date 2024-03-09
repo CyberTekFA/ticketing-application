@@ -1,6 +1,5 @@
 package com.hypertek.service.impl;
 
-import com.hypertek.dto.RoleDto;
 import com.hypertek.dto.UserDto;
 import com.hypertek.service.UserService;
 import org.springframework.stereotype.Service;
@@ -9,17 +8,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UserServiceImpl extends AbstractMapService<String,UserDto> implements UserService{
-
+public class UserServiceImpl extends AbstractMapService<UserDto,String> implements UserService {
 
     @Override
     public UserDto save(UserDto userDto) {
         return super.save(userDto.getUsername(),userDto);
-    }
-
-    @Override
-    public UserDto findById(String id) {
-        return super.findById(id);
     }
 
     @Override
@@ -31,20 +24,25 @@ public class UserServiceImpl extends AbstractMapService<String,UserDto> implemen
     public void deleteById(String id) {
         super.deleteById(id);
     }
+
     @Override
     public void update(UserDto object) {
-        super.update(object.getUsername(),object);
+        super.update(object.getUsername(), object);
+    }
+
+    @Override
+    public UserDto findById(String id) {
+        return super.findById(id);
     }
 
     @Override
     public List<UserDto> findAllManagers() {
-        return super.findAll().stream().filter(user->user.getRole().getId()==2).collect(Collectors.toList());
+        return super.findAll().stream().filter(user -> user.getRole().getId() == 2).collect(Collectors.toList());
     }
 
     @Override
     public List<UserDto> findAllEmployees() {
-        return  super.findAll().stream()
-                .filter(user->user.getRole().getId() == 3).collect(Collectors.toList());
+        return super.findAll().stream().filter(user -> user.getRole().getId() == 3).collect(Collectors.toList());
     }
 
 }
