@@ -45,7 +45,7 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label for="projectcode" class="col-form-label">Project Code</label>
-                                                    <input id="projectcode" th:field="*{projectCode}" type="text" class="form-control" placeholder="project code">
+                                                    <input id="projectcode" th:field="*{projectCode}" type="text" class="form-control" placeholder="project code" readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -56,7 +56,7 @@
                                                     <label>
                                                         <select th:field="*{assignedManager}" name="assignedmanager" class="custom-select">
                                                             <option th:value="''" th:text="Select"></option>
-                                                            <option th:each="manager : ${managers}" th:value="${manager.getRole().id}" th:text="${manager.getRole().getDescription()}"></option>
+                                                            <option th:each="manager : ${managers}" th:value="${manager.getUsername()}" th:text="${manager.firstname+' '+manager.lastname}"></option>
                                                         </select>
                                                     </label>
                                                 </div>

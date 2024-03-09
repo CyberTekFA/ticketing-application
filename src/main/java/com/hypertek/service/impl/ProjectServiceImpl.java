@@ -11,14 +11,21 @@ import java.util.stream.Collectors;
 
 @Service
 public class ProjectServiceImpl extends AbstractMapService<String, ProjectDTO> implements ProjectService {
+
     @Override
-    public ProjectDTO save(ProjectDTO object) {
-
-        if(object.getStatus() == null){
-            object.setStatus(STATUS.OPEN);
+    public ProjectDTO save(ProjectDTO projectDTO) {
+        if (projectDTO.getStatus() == null){
+            projectDTO.setStatus(STATUS.OPEN);
         }
+        if (projectDTO.getAssignedManager().getRole() == null){
+            projectDTO.setAssignedManager(projectDTO.getAssignedManager());
+        }
+        return super.save(projectDTO.getProjectCode(),projectDTO);
+    }
 
-        return super.save(object.getProjectCode(),object);
+    @Override
+    public ProjectDTO findById(String id) {
+        return super.findById(id);
     }
 
     @Override
@@ -28,11 +35,10 @@ public class ProjectServiceImpl extends AbstractMapService<String, ProjectDTO> i
 
     @Override
     public void update(ProjectDTO object) {
-
-        ProjectDTO newproject = findById(object.getProjectCode());
-
-        if(object.getStatus() == null)
-            object.setStatus(newproject.getStatus());
+        if (object.getStatus()== null){
+            ProjectDTO newStatus = findById(object.getProjectCode());
+            object.setStatus(newStatus.getStatus());
+        }
         super.update(object.getProjectCode(),object);
     }
 
@@ -42,14 +48,9 @@ public class ProjectServiceImpl extends AbstractMapService<String, ProjectDTO> i
     }
 
     @Override
-    public ProjectDTO findById(String id) {
-        return super.findById(id);
-    }
-
-    @Override
-    public void complete(ProjectDTO project) {
-        project.setStatus(STATUS.COMPLETE);
-        super.save(project.getProjectCode(),project);
+    public void complete(ProjectDTO projectDTO) {
+        projectDTO.setStatus(STATUS.COMPLETE);
+        super.save(projectDTO.getProjectCode(),projectDTO);
     }
 
     @Override
@@ -57,4 +58,5 @@ public class ProjectServiceImpl extends AbstractMapService<String, ProjectDTO> i
         return super.findAll().stream()
                 .map(ProjectDTO::getProjectName).collect(Collectors.toList());
     }
+
 }
